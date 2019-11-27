@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/geekdreamzz/epiphany.git
-  revision: 55f621d5217d25c32bc52f1a7848f838bc14d0d7
+  revision: 2e8d028d4a865529c10beb550fd0ed41bdb35795
   branch: alpha
   specs:
     epiphany (0.1.0)
