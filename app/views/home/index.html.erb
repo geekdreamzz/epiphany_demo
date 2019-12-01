@@ -1,0 +1,9 @@
+<%= form_with(url: "/home", method: "post") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:phrase, params[:phrase]) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<% if @intent %>
+  <%= @intent.api_response %>
+<% end %>
