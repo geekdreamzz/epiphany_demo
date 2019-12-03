@@ -7,10 +7,11 @@ class OmdbClient
     end
 
     def search(query)
-      epiphany_cache client.search(query)
+      epiphany_cache client.search(query) if query
     end
 
     def epiphany_cache(results)
+      return unless results.is_a? Omdb::Api::Collection
       results.movies.each do |m|
         # we're manually caching data but perhaps in future versions we can be more elegant and automated
         # but while in alpha I want to get the data into the system so I can later demo
@@ -32,7 +33,7 @@ class OmdbClient
 
         # caches known directors for the whole system
         voice_assistant.entity_types.find_by_name('directors').create_or_add_item_w([media.director], {})
-      end
+      end rescue Rails.env.development? ? binding.pry : []
     end
 
     def voice_assistant
