@@ -1,19 +1,18 @@
-<div class="carousel-item col-md-4 <%= 'active' if idx == 0 %>">
+<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
   <div class="card">
-    <img class="card-img-top img-fluid" src="<%= data['poster'] %>" alt="Card image cap">
-    <div class="card-body">
+    <img class="card-img-top" src="<%= data['poster'] %>">
+    <div class="card-block">
       <h4 class="card-title"><%= data['title'] %></h4>
-      <p class="card-text"><%= data['plot'] %></p>
-      <p class="card-text">
-        <small class="text-muted">
-          imdb rating: <%= data['imdb_rating'] %>, imdb_votes: <%= data['imdb_votes'] %>
-        </small>
-      </p>
-      <p class="card-text">
-        <small class="text-muted">
-          <%= data['year'] %>, <%= data['rated'] %>, <%= data['runtime'] %>, <%= data['actors'] %>
-        </small>
-      </p>
+      <div class="meta">
+        <%= data['actors'] %>
+      </div>
+      <div class="card-text">
+        <%= data['plot'] %>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="float-right">IMDB: <%= data['imdb_rating'] %></span>
+      <span><i class=""></i><%= data['year'] %>, Rating: <%= data['rated'] %></span>
     </div>
   </div>
 </div>

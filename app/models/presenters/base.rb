@@ -16,7 +16,9 @@ module Presenters
     end
 
     def titles
-      @titles ||= data[:detected_entities].uniq.select{|e| e[:entity_type_name] == 'titles'}.sort_by { |t| t.dig(:metadata, 'year') }.reverse
+      @titles ||= data[:detected_entities].uniq.select{ |e|
+        e[:entity_type_name] == 'titles' && e.dig(:metadata, 'poster') != 'N/A'
+      }.sort_by{ |t| t.dig(:metadata, 'imdb_rating') }.reverse
     end
 
     def has_results?

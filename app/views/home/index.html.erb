@@ -1,29 +1,17 @@
-<%= form_with(url: "/home", method: "post") do %>
-  <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag(:phrase, params[:phrase]) %>
-  <%= submit_tag("Search") %>
-<% end %>
+<div class="input-container">
+  <%= form_with(url: "/home", method: "post", ) do %>
+    <%= text_field_tag(:phrase, params[:phrase], class: 'phrase-input', placeholder: "Click Microphone to Ask a Question (or start typing and press enter)") %>
+  <% end %>
+</div>
 
-<% if @presenter.debug? %>
+<% if @presenter&.debug? %>
   <%= @presenter.titles %>
 <% end %>
 
-<% if @presenter.has_results? %>
-  <div class="container-fluid">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner row w-100 mx-auto">
-        <% @presenter.titles.each_with_index do |title, idx| %>
-          <%= render partial: 'shared/carousel_item', locals: {idx: idx, data: title[:metadata] } %>
-        <% end %>
-      </div>
-      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
+<% if @presenter&.has_results? %>
+  <div class="row card-results">
+    <% @presenter.titles.each_with_index do |title, idx| %>
+      <%= render partial: 'shared/carousel_item', locals: {idx: idx, data: title[:metadata] } %>
+    <% end %>
   </div>
 <% end %>

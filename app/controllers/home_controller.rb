@@ -11,6 +11,7 @@ class HomeController < ApplicationController
   end
 
   def omdb_cache_warmer
+    return true if params[:cache_off]
     return true if Rails.env.production? && Epiphany::TrainingPhrase.exist?(phrase: params[:phrase])
     if params[:phrase]
       Epiphany::Tokenizer::Fragmenter.fragmenter(params[:phrase]) do |phrase|
